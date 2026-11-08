@@ -1,0 +1,36 @@
+name: Patch Providers with Filters
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # lets you trigger it manually from GitHub app too
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run patcher
+        run: node patch_providers.js
+
+      - name: Commit patched providers
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add providers/
+          # Only commit if something actually changed
+          git diff --cached --quiet || git commit -m "chore: auto-patch providers with filterStreams [skip ci]"
+          git push
