@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * reanime - Built from src/reanime/
  * Generated: 2026-09-21T13:43:14.525Z
@@ -673,7 +674,7 @@ function getStreams(tmdbId, mediaType = "tv", season = null, episode = null) {
         const qb = qualityRank[(_b = b.quality) == null ? void 0 : _b.toLowerCase()] || 0;
         return qb - qa;
       });
-      return streams;
+      return filterStreams(streams);
     } catch (error) {
       console.error(`[Reanime] Error: ${error.message}`);
       return [];

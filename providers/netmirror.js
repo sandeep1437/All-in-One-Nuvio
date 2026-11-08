@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * netmirror - Built from src/netmirror/
  * Generated: 2026-09-26T18:41:31.637Z
@@ -282,7 +283,7 @@ function getStreams(tmdbId, mediaType, season, episode) {
         try {
           const streams = yield fetchFromPlatform(platformKey, title, mediaType, season, episode);
           if (streams && streams.length > 0)
-            return streams;
+            return filterStreams(streams);
         } catch (e) {
         }
       }
@@ -408,7 +409,7 @@ function fetchMobileContent(platformKey, platform, title, mediaType, season, epi
         }
       }
       if (streams.length)
-        return streams;
+        return filterStreams(streams);
     }
     return null;
   });

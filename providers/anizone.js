@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * anizone - Built from src/anizone/
  * Generated: 2026-09-25T19:36:47.745Z
@@ -790,7 +791,7 @@ function getStreams(tmdbId, mediaType = "tv", season = 1, episode = 1) {
         }
       }
       console.log(`[AniZone] Total streams found: ${streams.length}`);
-      return streams;
+      return filterStreams(streams);
     } catch (error) {
       console.log(`[AniZone] Error: ${error.message}`);
       return [];

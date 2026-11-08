@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * moviesmod - Built from src/moviesmod/
  * Generated: 2026-09-22T08:14:06.813Z
@@ -298,7 +299,7 @@ function CFType1(url) {
         if (h && h.startsWith("http"))
           links.push(h);
       });
-      return links;
+      return filterStreams(links);
     } catch (e) {
       return [];
     }
@@ -382,7 +383,7 @@ function extractDriveseedPage(url) {
       }
     } catch (e) {
     }
-    return streams;
+    return filterStreams(streams);
   });
 }
 
@@ -442,7 +443,7 @@ function getStreams(tmdbId, mediaType, seasonNum = 1, episodeNum = 1) {
           allStreams.push(...streams);
         }
       }
-      return allStreams;
+      return filterStreams(allStreams);
     } catch (e) {
       console.error("[MoviesMod] Error:", e.message);
       return [];
@@ -487,7 +488,7 @@ function processModLink(url, referer, quality, mediaType, episodeNum) {
           });
         }
       }
-      return results;
+      return filterStreams(results);
     } catch (e) {
       return [];
     }

@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * animepahe - Built from src/animepahe/
  * Generated: 2026-09-22T10:30:55.503Z

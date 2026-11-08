@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * animesalt - Built from src/animesalt/
  * Generated: 2026-09-22T20:41:44.444Z
@@ -445,7 +446,7 @@ function searchAnimeSalt(query) {
           results.push({ title, href });
         }
       });
-      return results;
+      return filterStreams(results);
     } catch (e) {
       return [];
     }

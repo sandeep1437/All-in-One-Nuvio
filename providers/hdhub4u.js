@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * hdhub4u - Built from src/hdhub4u/
  * Generated: 2026-10-02T12:34:10.590Z
@@ -131,7 +132,7 @@ function atob(value) {
       }
     }
   }
-  return output;
+  return filterStreams(output);
 }
 function cleanTitle(title) {
   let name = title.replace(/\.[a-zA-Z0-9]{2,4}$/, "");
@@ -543,7 +544,7 @@ function hubCloudExtractor(url, referer) {
           links.push(...extracted.map((l) => __spreadProps(__spreadValues({}, l), { quality: l.quality || quality })));
         }
       }
-      return links;
+      return filterStreams(links);
     } catch (e) {
       return [];
     }

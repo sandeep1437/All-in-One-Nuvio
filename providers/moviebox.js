@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * moviebox - Built from src/moviebox/
  * Generated: 2026-09-29T14:51:11.980Z
@@ -709,7 +710,7 @@ function getStreamLinks(subjectId, season = 0, episode = 0, mediaTitle = "", med
       const qb = qualityRank[(_b = b.quality) == null ? void 0 : _b.toLowerCase()] || 0;
       return qb - qa;
     });
-    return allStreams;
+    return filterStreams(allStreams);
   });
 }
 function fetchSubtitles(subjectId, streamId, langLabel) {

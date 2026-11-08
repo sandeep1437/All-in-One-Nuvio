@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * mapple - Built from src/mapple/
  * Generated: 2026-09-21T12:38:36.737Z
@@ -416,7 +417,7 @@ function extractHosterStream(hoster, tmdbId, mediaType, tvSlug, mediaReferer, se
         provider: "mapple",
         subtitles
       });
-      return streams;
+      return filterStreams(streams);
     } catch (e) {
       return [];
     }

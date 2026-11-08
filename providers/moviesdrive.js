@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * moviesdrive - Built from src/moviesdrive/
  * Generated: 2026-09-26T06:11:02.295Z
@@ -264,7 +265,7 @@ function hubCloudExtractor(url, referer) {
           links.push({ name: "ZipDisk Server", quality, url: link, size });
         }
       }
-      return links;
+      return filterStreams(links);
     } catch (e) {
       return [];
     }
@@ -425,7 +426,7 @@ function getStreams(tmdbId, mediaType, seasonNum = 1, episodeNum = 1) {
           }
         }
       }
-      return allStreams;
+      return filterStreams(allStreams);
     } catch (e) {
       console.error("[MoviesDrive] Error:", e.message);
       return [];

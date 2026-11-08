@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * uhdmovies - Built from src/uhdmovies/
  * Generated: 2026-09-28T09:06:23.265Z
@@ -334,7 +335,7 @@ function extractDriveseedPage(url) {
       }
     } catch (e) {
     }
-    return streams;
+    return filterStreams(streams);
   });
 }
 

@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 "use strict";
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
@@ -118,7 +119,7 @@ function atob(input) {
   for (let bc = 0, bs, buffer, i = 0; buffer = str.charAt(i++); ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer, bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0) {
     buffer = chars.indexOf(buffer);
   }
-  return output;
+  return filterStreams(output);
 }
 function rot13Cipher(str) {
   return str.replace(/[a-zA-Z]/g, function(c) {
@@ -365,7 +366,7 @@ function extractHubCloud(hubCloudUrl, baseMeta) {
         });
       }
     });
-    return results;
+    return filterStreams(results);
   });
 }
 function extractHblinks(hblinksUrl, baseMeta, depth = 0) {
@@ -412,7 +413,7 @@ function extractHblinks(hblinksUrl, baseMeta, depth = 0) {
         } catch (e) {
         }
       }
-      return results;
+      return filterStreams(results);
     } catch (e) {
       return [];
     }

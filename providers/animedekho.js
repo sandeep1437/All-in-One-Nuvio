@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 /**
  * animedekho - Built from src/animedekho/
  * Generated: 2026-09-22T20:41:44.640Z
@@ -471,7 +472,7 @@ function searchAnimeDekho(query) {
           results.push({ title, href });
         }
       });
-      return results;
+      return filterStreams(results);
     } catch (e) {
       return [];
     }

@@ -1,3 +1,4 @@
+const { filterStreams } = require('./_filters');
 const cheerio = require('cheerio-without-node-native');
 
 const DEFAULT_BASE = 'https://fibwatch.art';
@@ -37,7 +38,7 @@ function search(base, title) {
         const name = (card.find('p.hptag').text() || img.attr('alt') || '').trim();
         if (a.attr('href') && name) results.push({ url: absolute(base, a.attr('href')), title: name, image: absolute(base, img.attr('src')) });
       });
-      return results;
+      return filterStreams(results);
     });
 }
 
